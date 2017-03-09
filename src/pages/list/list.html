@@ -1,0 +1,29 @@
+<!--
+  Generated template for the List page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>List</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <form #userForm="ngForm" (ngSubmit)="search(userForm)">
+        <ion-searchbar name="sq" ngModel (ionClear)="onCancel($event)">
+        </ion-searchbar>
+    </form>
+    <ion-list>
+        <ion-item *ngFor="let result of results" (click)="goToDetails(result.uri.value, result.title.value)">
+            <h2>{{ result.title.value }}</h2>
+            <ion-icon name="arrow-forward" item-right></ion-icon>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
